@@ -1,6 +1,6 @@
 ---
 layout: page
-description: "Memory Pocket"
+description: "流水"
 ---
 
 {% for post in paginator.posts %}
@@ -9,6 +9,9 @@ description: "Memory Pocket"
         <h2 class="post-title">
             {{ post.title }}
         </h2>
+        <p class="post-meta">
+            {{ post.date | date: "%B %-d, %Y" }}
+        </p>
         {% if post.subtitle %}
         <h3 class="post-subtitle">
             {{ post.subtitle }}
@@ -18,9 +21,7 @@ description: "Memory Pocket"
             {{ post.content }}
         </div>
     </a>
-    <p class="post-meta">
-        {{ post.date | date: "%B %-d, %Y" }}
-    </p>
+    
 </div>
 <hr>
 {% endfor %}
