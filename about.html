@@ -3,97 +3,26 @@ layout: page
 title: "About"
 description: "Hi?"
 header-img: "img/about-bg.jpg"
+multilingual: true
 ---
 
 <!-- Language Selector -->
-<select onchange= "onLanChange(this.options[this.options.selectedIndex].value)">
-    <option value="0" selected> 语言 ：中文 Chinese </option>
-    <option value="1"> Language : English </option>
+<select class="sel-lang" onchange= "onLanChange(this.options[this.options.selectedIndex].value)">
+    <option value="0" selected> LANG: 中文 Chinese </option>
+    <option value="1"> LANG: English </option>
 </select>
 
 <!-- Chinese Version -->
 <div class="zh post-container">
-    <blockquote>
-        涅槃寂静
-    </blockquote>
-    你们好吗 
-    <br>
-    好好好好好
-
+    {% capture about_zh %}{% include about/zh.md %}{% endcapture %}
+    {{ about_zh | markdownify }}
 </div>
 
 <!-- English Version -->
 <div class="en post-container">
-    <blockquote>
-        LIve long and prosper    </blockquote>
-
-    <p>
-        I would like to gather records for my own review and sharing with the readers, from career-related learnings, news of innovation about sustainability and urban development, to personal travels and the smallest serendipities in life. I will try my best to categorize posts with clear filing for ease of reading/filing.    </p>
-
-    <p>
-        I believe that each person is versatile with complex and sometimes paradoxical thoughts, and difficult to be summarised in a limited linguistic context. Yet, here you can find some facts that probably tell something about me, and even relatable to you:    </p>
-        I love taking showers and naps. I eat quite some takeaways (not so healthy, so I am working on my fitness stuff).
-        I cannot do without music and film, though I often have no memory of big names. MBTI result suggested me as an INTP:-
-        I love deep connections and insightful conversations with people. In the meantime, I need extensive amount of time to be alone and recharge. My favorite activity will be staying home instead of hanging out with a large group.
-        I don’t have strong beliefs in any theories (including MBTI, obviously) and religions, but I do appreciate their shine in certain aspects. I like optimistic nihilism, and treat buddhism as a life philosophy.
-    <p style="text-align:right;">
-    </p>
-
+    {% capture about_en %}{% include about/en.md %}{% endcapture %}
+    {{ about_en | markdownify }}
 </div>
-
-<!-- Handle Language Change -->
-<script type="text/javascript">
-    var $zh = document.querySelector(".zh");
-    var $en = document.querySelector(".en");
-    function onLanChange(index){
-        if(index == 0){
-            $zh.style.display = "block";
-            $en.style.display = "none";
-        }else{
-            $en.style.display = "block";
-            $zh.style.display = "none";
-        }
-    }
-    onLanChange(0);
-</script>
-
-
-
-{% if site.duoshuo_username %}
-<!-- 多说评论框 start -->
-<div class="comment">
-    <div class="ds-thread"
-    {% if site.duoshuo_username == "huxblog" %}
-        data-thread-id="1187623191091085319"
-    {% else %}
-        data-thread-key="{{site.duoshuo_username}}/about"
-    {% endif %}
-
-    data-title="{{page.title}}"
-    data-url="{{site.url}}/about/"></div>
-</div>
-<!-- 多说评论框 end -->
-
-<!-- Duoshuo hacking -->
-<input id="dsUser" type="hidden" value="{{site.duoshuo_username}}"  />
-
-<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-    // dynamic User hacking by Hux
-    var _user = document.getElementById('dsUser').value;
-    // duoshuo comment query.
-    var duoshuoQuery = {short_name: _user };
-    (function() {
-        var ds = document.createElement('script');
-        ds.type = 'text/javascript';ds.async = true;
-        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-        ds.charset = 'UTF-8';
-        (document.getElementsByTagName('head')[0]
-         || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-</script>
-<!-- 多说公共JS代码 end -->
-{% endif %}
 
 
 {% if site.disqus_username %}
